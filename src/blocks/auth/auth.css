@@ -1,0 +1,21 @@
+.auth {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+@media (min-width: 320px) {
+    .auth {
+        max-width: 260px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .auth {
+        max-width: 358px;
+    }
+}
+

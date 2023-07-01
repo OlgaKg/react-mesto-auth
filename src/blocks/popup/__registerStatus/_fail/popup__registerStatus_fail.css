@@ -1,0 +1,4 @@
+.popup__registerStatus_fail {
+    background-image: url(../../../../images/Union_fail.svg);
+    background-repeat: no-repeat;
+}

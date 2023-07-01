@@ -1,0 +1,21 @@
+.profile {
+    margin: 0 auto;
+    display: flex;
+    max-height: 286px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media (min-width: 320px) {
+    .profile {
+        margin-bottom: 36px;
+        max-width: 880px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .profile {
+        margin-bottom: 50px;
+    }
+}

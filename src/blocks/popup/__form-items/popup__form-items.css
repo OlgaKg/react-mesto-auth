@@ -1,0 +1,17 @@
+.popup__form-items {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+@media (min-width: 320px) {
+    .popup__form-items {
+        max-width: 238px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .popup__form-items {
+        max-width: 358px;
+    }
+}

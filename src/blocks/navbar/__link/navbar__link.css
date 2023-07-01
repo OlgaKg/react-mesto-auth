@@ -1,0 +1,25 @@
+.navbar__link {
+    text-decoration: none;
+    color: #FFF;
+    cursor: pointer;
+    text-align: right;
+    transition: .4s linear;
+}
+
+.navbar__link:hover {
+    opacity: .6;
+}
+
+@media (min-width: 320px) {
+    .navbar__link {
+        font-size: 14px;
+        line-height: 17px;
+    }
+}
+
+@media (min-width: 540px) {
+    .navbar__link {
+        font-size: 18px;
+        line-height: 22px;
+    }
+}
