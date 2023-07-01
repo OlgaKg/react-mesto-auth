@@ -10,7 +10,7 @@ import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
 
-import { Route, Routes, Navigate, useNavigate, useLocation } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import Register from './Register';
 import Login from './Login';
 import PageNotFound from './PageNotFound';
@@ -30,10 +30,10 @@ function App() {
     const isOpen = isEditAvatarPopupOpen || isEditProfilePopupOpen || isAddPlacePopupOpen || isImgPopupOpen;
     const [isLoading, setIsLoading] = React.useState(false);
 
-    const [isLoddedIn, setLoggedIn] = React.useState(null);
+    const [isLoggedIn, setLoggedIn] = React.useState(null);
     const [isInfoTooltip, setInfoTooltip] = useState(false);
     const [isRegisterPopupOpen, setRegisterPopupOpen] = useState(false);
-    const [userData, setUserData] = React.useState(null);//разобраться 1ж23
+    const [userData, setUserData] = React.useState(null);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -153,7 +153,7 @@ function App() {
             .then(() => {
                 setRegisterPopupOpen(true);
                 setInfoTooltip(true);
-                navigate('/singin');
+                navigate('/signin');
             }).catch((err) => {
                 setInfoTooltip(false);
                 console.log(err)
@@ -162,28 +162,27 @@ function App() {
     }
 
     useEffect(() => {
-        if (isLoddedIn) {
-        Promise.all([api.getUserData(), api.getCards()])
-            .then(([userData, initialCards]) => {
-                setCurrentUser(userData);
-                setCards(initialCards);
-            }).catch((err) => { console.log(err) });
+        if (isLoggedIn) {
+            Promise.all([api.getUserData(), api.getCards()])
+                .then(([userData, initialCards]) => {
+                    setCurrentUser(userData);
+                    setCards(initialCards);
+                }).catch((err) => { console.log(err) });
         }
-    }, [isLoddedIn]);
+    }, [isLoggedIn]);
 
     return (
         <AppContext.Provider value={{ isLoading, closeAllPopups }}>
             <CurrentUserContext.Provider value={currentUser}>
                 <div className="page">
-                    <Header email={userData}/>
+                    <Header email={userData} isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />
                     <Routes>
-                        <Route path="/" element={isLoddedIn ? <Navigate to="/" replace /> : <Navigate to="/signin" replace />} />
                         <Route path="/signup" element={<Register handelRegisterSubmit={handelRegisterSubmit} />} />
                         <Route path="/signin" element={<Login handleLogin={() => setLoggedIn(true)} />} />
                         <Route path="/" element={
                             <ProtectedRoute
                                 element={Main}
-                                isLoddedIn={isLoddedIn}
+                                isLoggedIn={isLoggedIn}
                                 onEditAvatar={handleEditAvatarClick}
                                 onEditProfile={handleEditProfileClick}
                                 onAddPlace={handleAddPlaceClick}
@@ -192,8 +191,7 @@ function App() {
                                 onCardLike={handleCardLike}
                                 onCardDelete={handleCardDelete} />
                         } />
-                        <Route path='/*' element={<PageNotFound />} />
-                        {/* <Route path='*' element={<PageNotFound />} /> */}
+                        <Route path='*' element={<PageNotFound />} />
                     </Routes>
 
                     <Footer />

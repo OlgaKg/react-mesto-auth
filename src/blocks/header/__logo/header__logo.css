@@ -2,6 +2,7 @@
     .header__logo {
         min-width: 103.74px;
         max-height: 24.4px;
+        margin-bottom: 31.6px;
     }
  } 
 
@@ -9,5 +10,6 @@
     .header__logo {
         max-width: 176px;
         max-height: 33px;
+        margin-bottom: 33px;
     }
 }

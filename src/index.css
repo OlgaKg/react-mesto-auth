@@ -57,6 +57,8 @@
 @import url(../src/blocks/navbar/__button/navbar__button.css);
 @import url(../src/blocks/popup/__registerStatus/_fail/popup__registerStatus_fail.css);
 @import url(../src/blocks/popup/__registerStatus/_success/popup__registerStatus_success.css);
+@import url(../src/blocks/popup/__title/_register/popup__title_register.css);
+@import url(../src/blocks/popup/__container-register/popup__container-register.css);
 
 body {
   background-color: #000;

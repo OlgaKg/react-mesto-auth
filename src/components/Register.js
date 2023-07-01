@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import * as auth from '../utils/auth'
+import { Link } from 'react-router-dom';
 
 function Register({ handelRegisterSubmit }) {
     const [formValue, setFormValue] = useState({
         email: '',
         password: ''
     });
-
-    // const navigate = useNavigate();
-    // const [errorMessage, setErrorMessage] = useState("");//использовать в коде 33:47
 
     const handleChange = (evt) => {
         const { name, value } = evt.target;
@@ -26,9 +22,9 @@ function Register({ handelRegisterSubmit }) {
     }
 
     return (
-        <div className="auth" onSubmit={handleSubmit}>
+        <div className="auth">
             <p className="auth__title">Регистрация</p>
-            <form className="auth__form auth__form_register">
+            <form className="auth__form auth__form_register" onSubmit={handleSubmit}>
                 <input className="auth__input" id="email" name="email" type="email"
                     placeholder="Email"
                     value={formValue.email}
@@ -38,12 +34,12 @@ function Register({ handelRegisterSubmit }) {
                     value={formValue.password}
                     onChange={handleChange} />
                 <button className="auth__btn" type="submit"
-                    >
+                    onSubmit={handleSubmit}>
                     Зарегистрироваться
                 </button>
             </form>
             <div className="auth__signin">
-                <Link to="login" className="auth__link">Уже зарегистрированы? Войти</Link>
+                <Link to="/signin" className="auth__link">Уже зарегистрированы? Войти</Link>
             </div>
 
         </div>

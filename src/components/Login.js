@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import * as auth from '../utils/auth'
 
 function Login({ handleLogin }) {
@@ -9,7 +9,6 @@ function Login({ handleLogin }) {
     });
     
     const navigate = useNavigate();
-    // const [errorMessage, setErrorMessage] = useState("");//использовать в коде 33:47, popup
 
     const handleChange = (evt) => {
         const { name, value } = evt.target;
@@ -22,17 +21,18 @@ function Login({ handleLogin }) {
     const handleSubmit = (evt) => {
         evt.preventDefault();
         auth.loginUser(formValue.email, formValue.password).then((data) => {
-            localStorage.setItem('jwt', data.jwt);  
+            console.log(data.token);
+            localStorage.setItem('jwt', data.token);  
             handleLogin();
             navigate('/');
-        }).catch((err) => { console.log(err) }); //тут попап
+        }).catch((err) => { console.log(err) });
         
     }
 
     return (
         <div className="auth">
             <p className="auth__title">Вход</p>
-            <form className="auth__form auth__form_login">
+            <form className="auth__form auth__form_login" onSubmit={handleSubmit}>
                 <input className="auth__input" id="email" name="email" type="email"
                     placeholder="Email"
                     value={formValue.email}
@@ -41,8 +41,7 @@ function Login({ handleLogin }) {
                     placeholder="Пароль"
                     value={formValue.password}
                     onChange={handleChange} />
-                <button className="auth__btn" type="submit"
-                    onSubmit={handleSubmit}>
+                <button className="auth__btn" type="submit">
                     Войти
                 </button>
             </form>

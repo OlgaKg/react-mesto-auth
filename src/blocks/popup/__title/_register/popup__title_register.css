@@ -1,0 +1,19 @@
+.popup__title_register {
+    text-align: center;
+    margin: 0 auto;
+   
+}
+
+@media (min-width: 320px) {
+    .popup__title_register {
+        max-width: 244px;
+        margin-bottom: 50px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .popup__title_register {
+        max-width: 358px;
+        margin-bottom: 60px;
+    }
+}

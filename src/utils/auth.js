@@ -8,8 +8,8 @@ const checkReply = (res) => {
     }
 };
 
-const request = (url, options) => {
-    return fetch(`${BASE_URL}/${url}`, options).then(checkReply)
+const request = async (url, options) => {
+    return fetch(`${BASE_URL}/${url}`, options).then(checkReply);
 };
 
 export const registerUser = (email, password) => {
@@ -36,7 +36,7 @@ export const getContent = (token) => {
     return request(`users/me`, {
         method: 'GET',
         headers: {
-            'Accept' : 'application/json',
+            'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
         }
