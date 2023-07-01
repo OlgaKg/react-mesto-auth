@@ -21,7 +21,6 @@ function Login({ handleLogin }) {
     const handleSubmit = (evt) => {
         evt.preventDefault();
         auth.loginUser(formValue.email, formValue.password).then((data) => {
-            console.log(data.token);
             localStorage.setItem('jwt', data.token);  
             handleLogin();
             navigate('/');

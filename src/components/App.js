@@ -10,10 +10,9 @@ import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
 
-import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation, Navigate } from 'react-router-dom';
 import Register from './Register';
 import Login from './Login';
-import PageNotFound from './PageNotFound';
 import { ProtectedRoute } from './ProtectedRoute';
 import InfoTooltip from './InfoTooltip';
 import * as auth from '../utils/auth'
@@ -191,7 +190,7 @@ function App() {
                                 onCardLike={handleCardLike}
                                 onCardDelete={handleCardDelete} />
                         } />
-                        <Route path='*' element={<PageNotFound />} />
+                        <Route path='*' element={<Navigate to='/signin' replace />} />
                     </Routes>
 
                     <Footer />
