@@ -18,7 +18,6 @@ import InfoTooltip from './InfoTooltip';
 import * as auth from '../utils/auth'
 
 function App() {
-
     const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
     const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
     const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
@@ -27,12 +26,12 @@ function App() {
     const [currentUser, setCurrentUser] = useState({});
     const [cards, setCards] = useState([]);
     const isOpen = isEditAvatarPopupOpen || isEditProfilePopupOpen || isAddPlacePopupOpen || isImgPopupOpen;
-    const [isLoading, setIsLoading] = React.useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
-    const [isLoggedIn, setLoggedIn] = React.useState(null);
+    const [isLoggedIn, setLoggedIn] = useState(false);
     const [isInfoTooltip, setInfoTooltip] = useState(false);
     const [isRegisterPopupOpen, setRegisterPopupOpen] = useState(false);
-    const [userData, setUserData] = React.useState(null);
+    const [userData, setUserData] = useState(null);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -53,12 +52,12 @@ function App() {
             })
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         checkToken();
     }, []);
 
     if (isLoading === null) {
-        return <div class='loading'>Loading</div>//add style
+        return <div class='loading'>Loading</div>//add style 
     }
 
     function handleEditAvatarClick() {
@@ -214,6 +213,8 @@ function App() {
                     <InfoTooltip
                         isOpen={isRegisterPopupOpen}
                         registerStatus={isInfoTooltip}
+                        successMessage="Вы успешно зарегистрировались!"
+                        failureMessage="Что-то пошло не так! Попробуйте еще раз."
                     />
                 </div>
             </CurrentUserContext.Provider>

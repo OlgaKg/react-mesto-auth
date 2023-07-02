@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function Register({ handelRegisterSubmit }) {
+function Register({ handleRegisterSubmit }) {
     const [formValue, setFormValue] = useState({
         email: '',
         password: ''
@@ -18,7 +18,7 @@ function Register({ handelRegisterSubmit }) {
     const handleSubmit = (evt) => {
         const { email, password } = formValue;
         evt.preventDefault();
-        handelRegisterSubmit(email, password);
+        handleRegisterSubmit(email, password);
     }
 
     return (

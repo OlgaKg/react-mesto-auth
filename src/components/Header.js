@@ -32,7 +32,3 @@ function Header({ email, isLoggedIn, setLoggedIn }) {
 }
 
 export default Header;
-
-
-
-

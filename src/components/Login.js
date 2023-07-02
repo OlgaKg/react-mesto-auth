@@ -24,9 +24,8 @@ function Login({ handleLogin }) {
             localStorage.setItem('jwt', data.token);  
             handleLogin();
             navigate('/');
-        }).catch((err) => { console.log(err) });
-        
-    }
+        }).catch((err) => { console.log(err) }); 
+    }   
 
     return (
         <div className="auth">
