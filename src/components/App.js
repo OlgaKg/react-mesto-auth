@@ -31,24 +31,24 @@ function App() {
     const [isLoggedIn, setLoggedIn] = useState(false);
     const [isInfoTooltip, setInfoTooltip] = useState(false);
     const [isRegisterPopupOpen, setRegisterPopupOpen] = useState(false);
-    const [userData, setUserData] = useState(null);
+    const [email, setEmail] = useState(null);
     const navigate = useNavigate();
     const location = useLocation();
 
     const checkToken = () => {
         const jwt = localStorage.getItem('jwt');
         auth.getContent(jwt)
-            .then((data) => {
-                if (!data) {
+            .then((response) => {
+                if (!response) {
                     return;
                 }
                 navigate(location.pathname);
                 setLoggedIn(true);
-                setUserData(data);
+                setEmail(response.data.email);
             })
             .catch(() => {
                 setLoggedIn(false);
-                setUserData(null);
+                setEmail(null);
             })
     }
 
@@ -159,6 +159,11 @@ function App() {
             .finally(() => setRegisterPopupOpen(true));
     }
 
+    const handleLogin = (email) => {
+        setLoggedIn(true);
+        setEmail(email);
+    }
+
     useEffect(() => {
         if (isLoggedIn) {
             Promise.all([api.getUserData(), api.getCards()])
@@ -173,10 +178,10 @@ function App() {
         <AppContext.Provider value={{ isLoading, closeAllPopups }}>
             <CurrentUserContext.Provider value={currentUser}>
                 <div className="page">
-                    <Header email={userData} isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />
+                    <Header email={email} isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />
                     <Routes>
                         <Route path="/signup" element={<Register handleRegisterSubmit={handleRegisterSubmit} />} />
-                        <Route path="/signin" element={<Login handleLogin={() => setLoggedIn(true)} />} />
+                        <Route path="/signin" element={<Login handleLogin={handleLogin} />} />
                         <Route path="/" element={
                             <ProtectedRoute
                                 element={Main}

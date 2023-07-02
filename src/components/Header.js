@@ -17,9 +17,9 @@ function Header({ email, isLoggedIn, setLoggedIn }) {
         <header className="header">
             <img className="header__logo" src={logo} alt="Логотип Место" />
             <ul className="navbar__nav">
-                {email && isLoggedIn ?
+                {isLoggedIn ?
                     <Fragment>
-                        <p className="navbar__email">{email.data.email}</p>
+                        <p className="navbar__email">{email}</p>
                         <li><button onClick={signOut} className="navbar__link navbar__button">Выйти</button></li>
                     </Fragment> :
                     <Fragment>

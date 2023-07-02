@@ -22,7 +22,7 @@ function Login({ handleLogin }) {
         evt.preventDefault();
         auth.loginUser(formValue.email, formValue.password).then((data) => {
             localStorage.setItem('jwt', data.token);  
-            handleLogin();
+            handleLogin(formValue.email);
             navigate('/');
         }).catch((err) => { console.log(err) }); 
     }   
