@@ -146,7 +146,7 @@ function App() {
         handleSubmit(makeRequest);
     }
 
-    function handelRegisterSubmit(email, password) {
+    function handleRegisterSubmit(email, password) {
         auth.registerUser(email, password)
             .then(() => {
                 setRegisterPopupOpen(true);
@@ -175,7 +175,7 @@ function App() {
                 <div className="page">
                     <Header email={userData} isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />
                     <Routes>
-                        <Route path="/signup" element={<Register handelRegisterSubmit={handelRegisterSubmit} />} />
+                        <Route path="/signup" element={<Register handleRegisterSubmit={handleRegisterSubmit} />} />
                         <Route path="/signin" element={<Login handleLogin={() => setLoggedIn(true)} />} />
                         <Route path="/" element={
                             <ProtectedRoute
